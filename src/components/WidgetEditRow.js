@@ -40,6 +40,7 @@ export class WidgetEditRow extends React.Component {
     return <tr>
       <td><input type="checkbox" checked={widgetSelected}
         onChange={evt => onSelectWidget({ checked: evt.target.checked, widgetId: this.props.widget.id })} /></td>
+      <td>{this.props.widget.id}</td>
       <td><input type="text" name="name" value={this.state.name} onChange={this.change} /></td>
       <td><input type="text" name="description" value={this.state.description} onChange={this.change} /></td>
       <td><input type="text" name="color" value={this.state.color} onChange={this.change} /></td>
