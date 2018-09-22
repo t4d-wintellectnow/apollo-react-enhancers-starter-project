@@ -4,8 +4,6 @@ import { AppQuery, APP_QUERY } from './queries/AppQuery';
 import { InsertWidgetMutation } from './mutations';
 import { WidgetInsertedSubscription, WidgetDeletedSubscription } from './subscriptions';
 
-import './App.css';
-
 export class App extends React.Component {
 
   render() {
@@ -13,13 +11,10 @@ export class App extends React.Component {
     const refetchQueries = [{ query: APP_QUERY }];
 
     return <React.Fragment>
-      <section id="notifications">
-        <WidgetInsertedSubscription refetchQueries={refetchQueries} />
-        <WidgetDeletedSubscription refetchQueries={refetchQueries} />
-      </section>
+      <WidgetInsertedSubscription refetchQueries={refetchQueries} />
+      <WidgetDeletedSubscription refetchQueries={refetchQueries} />
       <AppQuery refetchQueries={refetchQueries} />
       <InsertWidgetMutation refetchQueries={refetchQueries} />
-
     </React.Fragment>;
   }
 }
