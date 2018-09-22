@@ -1,0 +1,13 @@
+.info-notification {
+  color: white;
+  font-weight: normal;
+  font-family: sans-serif;
+  font-size: 14px;
+  border: 0px;
+  border-radius: 5px;
+  background-color: navy;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 0;
+}
