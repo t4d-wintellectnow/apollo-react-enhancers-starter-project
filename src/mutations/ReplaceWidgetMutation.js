@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 
-import { DeleteSelectedWidgetsMutation } from './DeleteSelectedWidgetsMutation';
+import { DeleteWidgetMutation } from './DeleteWidgetMutation';
 
 export const REPLACE_WIDGET_MUTATION = gql`
   mutation ReplaceWidget($widget: ReplaceWidget) {
@@ -21,10 +21,16 @@ export const REPLACE_WIDGET_MUTATION = gql`
 
 export const ReplaceWidgetMutation = props =>
   <Mutation mutation={REPLACE_WIDGET_MUTATION}>
-    {mutateReplaceWidget => <DeleteSelectedWidgetsMutation {...props}
+    {mutateReplaceWidget => <DeleteWidgetMutation {...props}
       onReplaceWidget={widget => mutateReplaceWidget({
         variables: { widget },
         refetchQueries: props.refetchQueries,
+        update: (store) => {
+          store.writeQuery({
+            query: gql`query EditWidgetIdQuery { editWidgetId @client }`,
+            data: { editWidgetId: '-1' },
+          });
+        },
       })} />}
   </Mutation>;
 

@@ -20,6 +20,12 @@ export const DeleteSelectedWidgetsMutation = props =>
         mutateDeleteWidgets({
           variables: { widgetIds },
           refetchQueries: props.refetchQueries,
+          update: (store) => {
+            store.writeQuery({
+              query: gql`query SelectedWidgetIdsQuery { selectedWidgetIds @client }`,
+              data: { selectedWidgetIds: [] },
+            });
+          },
         })} />}
   </Mutation>;
 
